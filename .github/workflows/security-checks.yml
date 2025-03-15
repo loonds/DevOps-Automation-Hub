@@ -13,5 +13,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Grant Execute Permission
+        run: chmod +x ./scripts/security-scan.sh
+
       - name: Run Security Scan
         run: ./scripts/security-scan.sh

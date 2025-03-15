@@ -13,16 +13,22 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Debug - Check File Structure
+        run: ls -R
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Debug - Check Files
-        run: ls -la
-
       - name: Install Dependencies
-        run: npm install
+        run: |
+          if [ -f "package.json" ]; then
+            npm install
+          else
+            echo "❌ package.json NOT FOUND!"
+            exit 1
+          fi
 
       - name: Run Tests
         run: npm test

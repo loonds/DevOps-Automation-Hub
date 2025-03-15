@@ -18,11 +18,17 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Debug - Check Files
+        run: ls -la
+
       - name: Install Dependencies
         run: npm install
 
       - name: Run Tests
         run: npm test
+
+      - name: Set Execute Permission for Deploy Script
+        run: chmod +x ./scripts/docker-deploy.sh
 
       - name: Deploy Application
         if: github.ref == 'refs/heads/main'
